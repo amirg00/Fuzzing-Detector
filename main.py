@@ -7,6 +7,7 @@ Detector = detector.create_from_model('big.model')
 def print_pkt(pkt) -> None:
     """
     Prints packet details for debugging purposes.
+    Function also determine whether the packet belongs to fuzzing attack.
     :param pkt: given packet
     :return: None
     """
