@@ -22,7 +22,7 @@ def scan_pkt(pkt) -> None:
 
     try:
         load = pkt[Raw].load.decode("UTF-8")
-        print(f'Payload: {load}')
+        print(f'Payload: {load}, size: {len(load)}')
     except:
         print("It's a binary string!\n")
         return
@@ -32,7 +32,7 @@ def scan_pkt(pkt) -> None:
         return
 
     # First message doesn't correspond the protocol rules
-    if not load.startswith('SSH-2.0') or not load.endswith('\r\n'):
+    if not load.startswith('SSH-2.0') or not load.endswith('\r\n') or not (len(load) <= 255):
         print("Fuzzing detected!")
         exit()
 
